@@ -17,5 +17,6 @@ Then(/^Zedro should see home page$/, async () => {
 Then(
   /^Zedro should see error "(.*)"$/, async (dynamicMessage) => {
     await LoginPage.validateLockedOutUserError(dynamicMessage);
-  }
-);
+  });
+
+

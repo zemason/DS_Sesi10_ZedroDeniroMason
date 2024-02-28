@@ -17,10 +17,12 @@ class LoginPage extends Page {
   errorLockedOutUser = (dynamicMessage) =>
     $(`//h3[text()="${dynamicMessage}"]`);
 
-  async login() {
+  errorInvalidUser = (dynamicMessage) => $(`//h3[text()="${dynamicMessage}"]`);
+
+  async login(username) {
     await this.inputUsername.waitForDisplayed({ timeout: 2500 });
-    await this.inputUsername.setValue("username");
-    await this.inputPassword.setValue("process.env.PASSWORD_SAUCEDEMO");
+    await this.inputUsername.setValue(username);
+    await this.inputPassword.setValue(process.env.PASSWORD_SAUCEDEMO);
     await this.btnLogin.click();
   }
 
@@ -30,6 +32,7 @@ class LoginPage extends Page {
     });
     await expect(this.errorLockedOutUser(dynamicMessage)).toBeDisplayed();
   }
+
 
   open() {
     return super.open("/");
